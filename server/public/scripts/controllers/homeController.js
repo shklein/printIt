@@ -1,28 +1,19 @@
 myApp.controller('HomeController', ['$scope', '$http', function($scope, $http)
 
 {
-  var key = 'f36fcd38aad43d04c6b9042c01e91da5';
-  var baseURL = 'http://api.petfinder.com/';
+  var authenticationSuccess = function() { console.log("Successful authentication"); };
+  var authenticationFailure = function() { console.log("Failed authentication"); };
 
-
-  $scope.getRandomPet = function() {
-    var query = 'pet.getRandom';
-    query += '?key=' + key;
-    query += '&animal=cat';
-    query += '&output=basic';
-    query += '&format=json';
-
-    var request = baseURL + encodeURI(query) + '&callback=JSON_CALLBACK';
-
-    console.log(request);
-
-    $http.jsonp(request).then(
-      function(response) {
-        console.log(response.data);
-        $scope.animal = response.data.petfinder.pet;
-      }
-    )
-  }
+  Trello.authorize({
+  type: 'popup',
+  name: 'Print It Application',
+  scope: {
+    read: 'true',
+    write: 'true' },
+  expiration: 'never',
+  success: authenticationSuccess,
+  error: authenticationFailure
+});
 
 
 }]);
