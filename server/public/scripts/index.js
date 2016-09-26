@@ -1,3 +1,16 @@
+var loadedBoards = function (boards) {
+  console.log(boards);
+};
+
+var loadBoards = function () {
+  Trello.get(
+'members/me/boards',
+loadedBoards,
+function () {console.log("Failed to retrieve boards"); }
+)
+
+}
+
 Trello.authorize({
   type: "popup",
   name: "Trello dashboard",
@@ -6,6 +19,6 @@ Trello.authorize({
     write: false
   },
   expiration: "never",
-  success: function() { console.log("Authentication success"); },
+  success: loadBoards,
   error: function() { console.log("Failed authentication"); }
 });
