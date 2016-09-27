@@ -1,5 +1,7 @@
 var loadedBoards = function (boards) {
-  console.log(boards);
+  boards.forEach (function (board) {
+    console.log(board.name);
+  })
 };
 
 var loadBoards = function () {
