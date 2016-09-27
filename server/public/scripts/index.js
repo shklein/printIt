@@ -1,18 +1,21 @@
-var loadedBoards = function (boards) {
-  boards.forEach (function (board) {
-    var div = document.getElementById("boards");
-    var h = document.createElement("p");
-    var b = document.createTextNode(board.name);
-    h.appendChild(b);
-    div.appendChild(h);
+var loadedCards = function (cards) {
+  cards.forEach (function (card) {
+    if (card.idChecklists.length  > 0) {
+      var div = document.getElementById("boards");
+      var h = document.createElement("a");
+      var b = document.createTextNode(card.name);
+      h.appendChild(b);
+      div.appendChild(h);
+      console.log(card.idChecklists[0]);
+    }
   })
 };
 
-var loadBoards = function () {
+var loadCards = function () {
   Trello.get(
-'members/me/boards',
-loadedBoards,
-function () {console.log("Failed to retrieve boards"); }
+'/members/me/cards',
+loadedCards,
+function () {console.log("Failed to retrieve cards"); }
 )
 
 }
@@ -25,6 +28,6 @@ Trello.authorize({
     write: false
   },
   expiration: "never",
-  success: loadBoards,
+  success: loadCards,
   error: function() { console.log("Failed authentication"); }
 });

@@ -8,3 +8,11 @@ h2 {
   color:white;
   text-align: center;
 }
+
+a {
+  color: white;
+}
+
+a:hover {
+  color:white;
+}
