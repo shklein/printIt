@@ -1,6 +1,10 @@
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
-    console.log(board.name);
+    var div = document.getElementById("boards");
+    var h = document.createElement("p");
+    var b = document.createTextNode(board.name);
+    h.appendChild(b);
+    div.appendChild(h);
   })
 };
 
