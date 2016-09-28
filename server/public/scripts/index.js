@@ -14,7 +14,7 @@ var loadChecklist = function (items) {
    $('#checklists').append('<div class="todo"></div>');
    var $el = $('.todo');
    items.forEach (function (item) {
-    $el.append('<p>' + item.name + '</p>');
+    $el.append('<h2>' + item.name + '</h2>');
    })
 };
 
