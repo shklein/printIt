@@ -1,12 +1,17 @@
+$(document).ready(function (){
+
+  $(document).on('click', 'a', function(){
+    alert("Hey!");
+});
+
+
+
 var loadedCards = function (cards) {
+  var $el = $('#cards');
   cards.forEach (function (card) {
     if (card.idChecklists.length  > 0) {
-      var div = document.getElementById("boards");
-      var h = document.createElement("a");
-      var b = document.createTextNode(card.name);
-      h.appendChild(b);
-      div.appendChild(h);
-      console.log(card.idChecklists[0]);
+      var $el = $('#cards');
+      $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a>');
     }
   })
 };
@@ -30,4 +35,13 @@ Trello.authorize({
   expiration: "never",
   success: loadCards,
   error: function() { console.log("Failed authentication"); }
+});
+
+var loadChecklist = function (id) {
+  Trello.get(
+    '/checklists/id/checkItems',
+    function () { console.log("Here"); },
+    function () { console.log("Failed to retrieve checklist"); }
+  )};
+
 });

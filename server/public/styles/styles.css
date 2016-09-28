@@ -15,4 +15,11 @@ a {
 
 a:hover {
   color:white;
+  cursor: pointer;
+}
+
+.header {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-bottom: 1px white dashed;
 }
