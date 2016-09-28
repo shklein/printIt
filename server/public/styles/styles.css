@@ -27,9 +27,26 @@ a:hover {
 .todo {
   background-color: white;
   color:black;
-  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  margin: 10px;
+  text-align:left;
 }
 
 .todo h2 {
   color: black;
+  text-align:left;
+}
+
+.img2 {
+  display: inline-block;
+  height:25px;
+  width: auto;
+  float:left;
+  margin-right: 5px;
+}
+
+.div5 {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-top: 1px white dashed;
 }
