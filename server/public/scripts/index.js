@@ -10,9 +10,14 @@ $(document).ready(function (){
   )
 });
 
+$(document).on('click', 'button', function () {
+  $('button').parent().remove();
+});
+
 var loadChecklist = function (items) {
    $('#checklists').append('<div class="todo"></div>');
    var $el = $('.todo');
+   $el.append('<button>x</button>');
    items.forEach (function (item) {
     $el.append('<h2><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h2>');
    })
