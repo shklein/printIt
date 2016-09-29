@@ -28,7 +28,7 @@ var loadedCards = function (cards) {
   cards.forEach (function (card) {
     if (card.idChecklists.length  > 0) {
       var $el = $('#cards');
-      $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a>');
+      $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a><br />');
     }
   })
 };
