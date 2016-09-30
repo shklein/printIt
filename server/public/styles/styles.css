@@ -1,40 +1,43 @@
-body {
-  background-color: #0079BF;
-  color: white;
-  margin-left: 10px;
+h1 {
+  color: #0079BF;
+  text-align: center;
+  font-weight: bolder;
 }
 
 h2 {
-  color:white;
+  color: #0079BF;
   text-align: center;
+  font-weight: bold
 }
 
-a {
-  color: white;
-}
-
-a:hover {
-  color:white;
-  cursor: pointer;
+h3 {
+  color: #0079BF;
 }
 
 .header {
-  margin-left: 50px;
-  margin-right: 50px;
-  border-bottom: 1px white dashed;
+  margin-bottom: 100px;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 .todo {
-  background-color: white;
-  color:black;
   padding: 10px;
   margin: 10px;
   text-align:left;
+  border: 1px gray solid;
 }
 
 .todo h2 {
   color: black;
   text-align:left;
+}
+
+img {
+  height: 100px;
+  width: auto;
+  float: left;
 }
 
 .img2 {
@@ -46,9 +49,7 @@ a:hover {
 }
 
 .div5 {
-  margin-left: 50px;
-  margin-right: 50px;
-  border-top: 1px white dashed;
+  margin-top: 100px;
 }
 
 button {
