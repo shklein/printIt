@@ -1,5 +1,6 @@
 h1 {
   color: #0079BF;
+  font-size: 50px;
   text-align: center;
   font-weight: bolder;
 }
@@ -15,7 +16,7 @@ h3 {
 }
 
 .header {
-  margin-bottom: 100px;
+  margin-bottom: 75px;
 }
 
 a:hover {
