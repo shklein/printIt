@@ -12,11 +12,9 @@ $(document).ready(function (){
 
 $(document).on('click', 'button', function () {
   $('button').parent().remove();
-  $('#checklists').append('<img src="./views/img/trello-logo-blue.png" alt="Trello logo" />');
 });
 
 var loadChecklist = function (items) {
-  $('#checklists img:last-child').remove();
    $('#checklists').append('<div class="todo"></div>');
    var $el = $('.todo');
    $el.append('<button>x</button>');

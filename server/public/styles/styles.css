@@ -1,7 +1,6 @@
 h1 {
   color: #0079BF;
   font-size: 50px;
-  text-align: center;
   font-weight: bolder;
 }
 
@@ -16,7 +15,12 @@ h3 {
 }
 
 .header {
-  margin-bottom: 75px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.div2 {
+  margin-left: 25px;
 }
 
 a:hover {
@@ -36,9 +40,9 @@ a:hover {
 }
 
 img {
-  height: 100px;
+  height: 75px;
   width: auto;
-  float: left;
+  align: middle;
 }
 
 .img2 {
