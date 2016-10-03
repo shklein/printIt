@@ -15,6 +15,7 @@ $(document).on('click', 'button', function () {
 });
 
 var loadChecklist = function (items) {
+   $('#checklists').empty();
    $('#checklists').append('<div class="todo"></div>');
    var $el = $('.todo');
    $el.append('<button>x</button>');
