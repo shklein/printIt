@@ -1,44 +1,74 @@
 $(document).ready(function (){
 
-  $(document).on('click', 'a', function () {
-    var id = $(this).attr('id');
-    var getString = '/checklists/' + id + '/checkItems';
-    Trello.get(
-    getString,
-    loadChecklist,
-    function () { console.log("Failed to retrieve checklist"); }
-  )
-});
+//   $(document).on('click', 'a', function () {
+//     var id = $(this).attr('id');
+//     var getString = '/checklists/' + id + '/checkItems';
+//     Trello.get(
+//     getString,
+//     loadChecklist,
+//     function () { console.log("Failed to retrieve checklist"); }
+//   )
+// });
+//
+// $(document).on('click', 'button', function () {
+//   $('button').parent().remove();
+// });
+//
+// var loadChecklist = function (items) {
+//    $('#checklists').empty();
+//    $('#checklists').append('<div class="todo"></div>');
+//    var $el = $('.todo');
+//    $el.append('<button>x</button>');
+//    items.forEach (function (item) {
+//     $el.append('<h4><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
+//    })
+// };
 
-$(document).on('click', 'button', function () {
-  $('button').parent().remove();
-});
+// var loadedCards = function (cards) {
+//   var $el = $('#cards');
+//   cards.forEach (function (card) {
+//     if (card.idChecklists.length  > 0) {
+//       var $el = $('#cards');
+//       $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a><br />');
+//     }
+//   })
+// };
+//
+// var loadCards = function () {
+//   Trello.get(
+// '/members/me/cards',
+// loadedCards,
+// function () {console.log("Failed to retrieve cards"); }
+// )
+//
+// }
 
-var loadChecklist = function (items) {
-   $('#checklists').empty();
-   $('#checklists').append('<div class="todo"></div>');
-   var $el = $('.todo');
-   $el.append('<button>x</button>');
-   items.forEach (function (item) {
-    $el.append('<h2><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h2>');
-   })
-};
+var dataSet = [];
+var newObj = {};
 
-var loadedCards = function (cards) {
-  var $el = $('#cards');
-  cards.forEach (function (card) {
-    if (card.idChecklists.length  > 0) {
-      var $el = $('#cards');
-      $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a><br />');
-    }
+//nested calls that input all data to board, push object to dataSet
+//THEN, loop that appends names & IDs to document
+//only clicks are for individual checklists?
+
+
+var loadedBoards = function (boards) {
+
+  boards.forEach (function (board) {
+    newObj.boardName = board.name;
+    newObj.boardId = board.id;
+    dataSet.push(newObj);
+    newObj = {};
   })
-};
+    console.log(dataSet);
+    newObj = {};
+  };
 
-var loadCards = function () {
+
+var loadBoards = function () {
   Trello.get(
-'/members/me/cards',
-loadedCards,
-function () {console.log("Failed to retrieve cards"); }
+'/members/me/boards',
+loadedBoards,
+function () {console.log("Failed to retrieve boards"); }
 )
 
 }
@@ -51,7 +81,7 @@ Trello.authorize({
     write: false
   },
   expiration: "never",
-  success: loadCards,
+  success: loadBoards,
   error: function() { console.log("Failed authentication"); }
 });
 

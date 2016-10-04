@@ -32,10 +32,10 @@ a:hover {
   padding: 10px;
   margin: 10px;
   text-align:left;
-  border: 1px gray solid;
+  
 }
 
-.todo h2 {
+.todo h4 {
   color: black;
   text-align:left;
 }
