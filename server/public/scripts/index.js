@@ -1,19 +1,27 @@
 $(document).ready(function (){
 
-//   $(document).on('click', 'a', function () {
-//     var id = $(this).attr('id');
-//     var getString = '/checklists/' + id + '/checkItems';
-//     Trello.get(
-//     getString,
-//     loadChecklist,
-//     function () { console.log("Failed to retrieve checklist"); }
-//   )
-// });
-//
+  $(document).on('click', '.boards', function () {
+    var id = $(this).attr('id');
+    var getString = '/boards/' + id + '/lists';
+    Trello.get(
+      getString,
+      loadLists,
+      function () { console.log("Failed to retrieve checklist"); }
+    )
+  });
+
 // $(document).on('click', 'button', function () {
 //   $('button').parent().remove();
 // });
-//
+
+  var loadLists = function (lists) {
+    $('.boards').append('<div class="lists"></div');
+    var $el = $('.lists');
+    $el.append('<ul></ul>');
+    lists.forEach (function (list) {
+      $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
+    })
+  };
 // var loadChecklist = function (items) {
 //    $('#checklists').empty();
 //    $('#checklists').append('<div class="todo"></div>');
@@ -43,15 +51,14 @@ $(document).ready(function (){
 //
 // }
 
-
+//Boards
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
-    $el.append('<a id="' + board.id + '">' + board.name + '</a><br />')
+    $el.append('<a class="boards" id="' + board.id + '">' + board.name + '</a><br />')
   })
 
   };
-
 
 var loadBoards = function () {
   Trello.get(
