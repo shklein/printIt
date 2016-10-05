@@ -1,18 +1,17 @@
 h1 {
-  color: #0079BF;
+  color: #800000;
   font-size: 50px;
-  font-weight: bolder;
   float: left;
 }
 
 h2 {
-  color: #0079BF;
+  color: #800000;
   text-align: center;
   font-weight: bold
 }
 
 h3 {
-  color: #0079BF;
+  color: #800000;
 }
 
 .header {
@@ -32,7 +31,7 @@ a:hover {
   padding: 10px;
   margin: 10px;
   text-align:left;
-  
+
 }
 
 .todo h4 {

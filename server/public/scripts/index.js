@@ -43,24 +43,13 @@ $(document).ready(function (){
 //
 // }
 
-var dataSet = [];
-var newObj = {};
-
-//nested calls that input all data to board, push object to dataSet
-//THEN, loop that appends names & IDs to document
-//only clicks are for individual checklists?
-
 
 var loadedBoards = function (boards) {
-
   boards.forEach (function (board) {
-    newObj.boardName = board.name;
-    newObj.boardId = board.id;
-    dataSet.push(newObj);
-    newObj = {};
+    var $el = $('#boards');
+    $el.append('<a id="' + board.id + '">' + board.name + '</a><br />')
   })
-    console.log(dataSet);
-    newObj = {};
+
   };
 
 
