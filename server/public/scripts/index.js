@@ -15,12 +15,13 @@ $(document).ready(function (){
 // });
 
   var loadLists = function (lists) {
-    $('.boards').append('<div class="lists"></div');
-    var $el = $('.lists');
-    $el.append('<ul></ul>');
-    lists.forEach (function (list) {
-      $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
-    })
+    console.log($(this));
+    // $id.append('<div class="lists"></div');
+    // var $el = $('.lists');
+    // $el.append('<ul></ul>');
+    // lists.forEach (function (list) {
+    //   $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
+    // })
   };
 // var loadChecklist = function (items) {
 //    $('#checklists').empty();
