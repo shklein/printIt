@@ -1,7 +1,10 @@
 $(document).ready(function (){
 
+var id="";
+
   $(document).on('click', '.boards', function () {
-    var id = $(this).attr('id');
+    $('.lists').remove();
+      id = $(this).attr('id');
     var getString = '/boards/' + id + '/lists';
     Trello.get(
       getString,
@@ -14,14 +17,13 @@ $(document).ready(function (){
 //   $('button').parent().remove();
 // });
 
-  var loadLists = function (lists) {
-    console.log($(this));
-    // $id.append('<div class="lists"></div');
-    // var $el = $('.lists');
-    // $el.append('<ul></ul>');
-    // lists.forEach (function (list) {
-    //   $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
-    // })
+   var loadLists = function (lists) {
+     $('#' + id).append('<div class="lists"></div>');
+     var $el = $('.lists');
+     $el.append('<ul></ul>');
+     lists.forEach (function (list) {
+       $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
+    })
   };
 // var loadChecklist = function (items) {
 //    $('#checklists').empty();
@@ -56,7 +58,7 @@ $(document).ready(function (){
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
-    $el.append('<a class="boards" id="' + board.id + '">' + board.name + '</a><br />')
+    $el.append('<div class="board"><a class="boards" id="' + board.id + '">' + board.name + '</a></div>')
   })
 
   };
