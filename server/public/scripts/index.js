@@ -2,15 +2,28 @@ $(document).ready(function (){
 
 var id="";
 
-  $(document).on('click', '.boards', function () {
+//Retrieve lists
+  $(document).on('click', '.board', function () {
     $('.lists').remove();
       id = $(this).attr('id');
     var getString = '/boards/' + id + '/lists';
     Trello.get(
       getString,
       loadLists,
-      function () { console.log("Failed to retrieve checklist"); }
+      function () { console.log("Failed to retrieve lists"); }
     )
+  });
+  //Retrieve cards
+  $(document).on('click', 'li', function (event) {
+      event.stopPropagation();
+      $('.card').remove();
+      id = $(this).attr('id');
+      var getString = '/lists/' + id + '/cards';
+      Trello.get(
+        getString,
+        function () { console.log("Success!"); },
+        function () { console.log("Failed to retrieve lists"); }
+      )
   });
 
 // $(document).on('click', 'button', function () {
@@ -18,11 +31,11 @@ var id="";
 // });
 
    var loadLists = function (lists) {
-     $('#' + id).append('<div class="lists"></div>');
-     var $el = $('.lists');
+     $('#' + id).append('<div class="list"></div>');
+     var $el = $('.list');
      $el.append('<ul></ul>');
      lists.forEach (function (list) {
-       $el.append('<li><a id="' + list.id + '">' + list.name + '</a></li>')
+       $el.append('<li id="' + list.id + '"><a>' + list.name + '</a></li>')
     })
   };
 // var loadChecklist = function (items) {
@@ -45,20 +58,20 @@ var id="";
 //   })
 // };
 //
-// var loadCards = function () {
-//   Trello.get(
-// '/members/me/cards',
-// loadedCards,
-// function () {console.log("Failed to retrieve cards"); }
-// )
-//
-// }
+ var loadCards = function () {
+      Trello.get(
+      '/members/me/cards',
+      loadedCards,
+      function () {console.log("Failed to retrieve cards"); }
+    )
 
-//Boards
+  };
+
+//Boards (on page load)
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
-    $el.append('<div class="board"><a class="boards" id="' + board.id + '">' + board.name + '</a></div>')
+    $el.append('<div class="board" id="' + board.id + '"><a>' + board.name + '</a></div>')
   })
 
   };
