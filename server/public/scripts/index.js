@@ -4,7 +4,7 @@ var id="";
 
 //Retrieve lists
   $(document).on('click', '.board', function () {
-    $('.lists').remove();
+    $('.list').remove();
       id = $(this).attr('id');
     var getString = '/boards/' + id + '/lists';
     Trello.get(
