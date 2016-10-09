@@ -21,7 +21,7 @@ var id="";
       var getString = '/lists/' + id + '/cards';
       Trello.get(
         getString,
-        function () { console.log("Success!"); },
+        loadCards,
         function () { console.log("Failed to retrieve lists"); }
       )
   });
@@ -48,16 +48,15 @@ var id="";
 //    })
 // };
 
-// var loadedCards = function (cards) {
-//   var $el = $('#cards');
-//   cards.forEach (function (card) {
-//     if (card.idChecklists.length  > 0) {
-//       var $el = $('#cards');
-//       $el.append('<a id="' + card.idChecklists[0] + '">' + card.name + '</a><br />');
-//     }
-//   })
-// };
-//
+    var loadedCards = function (cards) {
+      $('#' + id).append('<div class="card"></div>');
+      var $el = $('.card');
+      $el.append('<ul></ul>');
+      cards.forEach (function (card) {
+          $el.append('<li id"' + card.id + '"><a>' + card.name + '</a></li>');
+      })
+    };
+
  var loadCards = function () {
       Trello.get(
       '/members/me/cards',
