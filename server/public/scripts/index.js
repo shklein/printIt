@@ -26,10 +26,24 @@ var id="";
       )
   });
 
-// $(document).on('click', 'button', function () {
-//   $('button').parent().remove();
-// });
+  //Retrieve checklists
+  $(document).on('click', '.card', function (event) {
+    event.stopPropagation();
+    id = $(this).attr('id');
+    var getString = '/cards/' + id + '/checklists';
+    Trello.get(
+      getString,
+      function () { console.log("Success!"); },
+      function () { console.log("Failed to retrieve checklists"); }
+    )
+  });
 
+  //Close checklist
+  $(document).on('click', 'button', function () {
+    $('button').parent().remove();
+  });
+
+  //Load lists
    var loadLists = function (lists) {
      $('#' + id).append('<div class="list"></div>');
      var $el = $('.list');
@@ -38,17 +52,20 @@ var id="";
        $el.append('<li id="' + list.id + '"><a>' + list.name + '</a></li>')
     })
   };
-// var loadChecklist = function (items) {
-//    $('#checklists').empty();
-//    $('#checklists').append('<div class="todo"></div>');
-//    var $el = $('.todo');
-//    $el.append('<button>x</button>');
-//    items.forEach (function (item) {
-//     $el.append('<h4><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
-//    })
-// };
 
-    var loadedCards = function (cards) {
+  //Load checklists
+  var loadChecklist = function (items) {
+      $('#checklists').empty();
+      $('#checklists').append('<div class="todo"></div>');
+      var $el = $('.todo');
+      $el.append('<button>x</button>');
+      items.forEach (function (item) {
+        $el.append('<h4><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
+      })
+    };
+
+    //Load cards
+    var loadCards = function (cards) {
       $('#' + id).append('<div class="card"></div>');
       var $el = $('.card');
       $el.append('<ul></ul>');
@@ -56,15 +73,6 @@ var id="";
           $el.append('<li id"' + card.id + '"><a>' + card.name + '</a></li>');
       })
     };
-
- var loadCards = function () {
-      Trello.get(
-      '/members/me/cards',
-      loadedCards,
-      function () {console.log("Failed to retrieve cards"); }
-    )
-
-  };
 
 //Boards (on page load)
 var loadedBoards = function (boards) {
@@ -84,6 +92,7 @@ function () {console.log("Failed to retrieve boards"); }
 
 }
 
+//Trello authorization
 Trello.authorize({
   type: "popup",
   name: "Trello dashboard",

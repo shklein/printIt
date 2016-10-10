@@ -62,3 +62,8 @@ button {
   background-color: white;
   border: none;
 }
+
+.card li {
+  list-style-type: circle;
+  text-indent: 25px;
+}
