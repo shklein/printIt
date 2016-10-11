@@ -27,16 +27,16 @@ var id="";
   });
 
   //Retrieve checklists
-  $(document).on('click', '.card', function (event) {
-    event.stopPropagation();
-    id = $(this).attr('id');
-    var getString = '/cards/' + id + '/checklists';
-    Trello.get(
+  $(document).on('click', 'a', function () {
+      id = $(this).attr('id');
+      console.log(id);
+      var getString = '/cards/' + id + '/checklists';
+      Trello.get(
       getString,
       function () { console.log("Success!"); },
       function () { console.log("Failed to retrieve checklists"); }
     )
-  });
+   });
 
   //Close checklist
   $(document).on('click', 'button', function () {
@@ -47,10 +47,11 @@ var id="";
    var loadLists = function (lists) {
      $('#' + id).append('<div class="list"></div>');
      var $el = $('.list');
-     $el.append('<ul></ul>');
+     $el.append('<ul>');
      lists.forEach (function (list) {
        $el.append('<li id="' + list.id + '"><a>' + list.name + '</a></li>')
     })
+    $el.append('</ul>')
   };
 
   //Load checklists
@@ -68,10 +69,11 @@ var id="";
     var loadCards = function (cards) {
       $('#' + id).append('<div class="card"></div>');
       var $el = $('.card');
-      $el.append('<ul></ul>');
+      $el.append('<ul>');
       cards.forEach (function (card) {
-          $el.append('<li id"' + card.id + '"><a>' + card.name + '</a></li>');
+          $el.append('<li><a id="' + card.id + '">' + card.name + '</a></li>');
       })
+      $el.append('</ul>')
     };
 
 //Boards (on page load)
