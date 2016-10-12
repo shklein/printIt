@@ -40,6 +40,19 @@ var id="";
     )
    });
 
+   //Load checkedItems
+   $(document).on('click', '.loadedChecklist', function (event) {
+       event.stopPropagation();
+       $('#checklists').empty();
+       id = $(this).attr('id');
+       var getString = '/checklist/' + id + '/checkItems';
+       Trello.get(
+       getString,
+       loadChecklist,
+       function () { console.log("Failed to retrieve checklists"); }
+     )
+    });
+
   //Close checklist
   $(document).on('click', 'button', function () {
     $('button').parent().remove();
