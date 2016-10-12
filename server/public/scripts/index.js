@@ -2,11 +2,13 @@ $(document).ready(function (){
 
 
 var id="";
+var breadcrumb = "";
 
 //Retrieve lists
   $(document).on('click', '.board', function () {
     $('.list').remove();
       id = $(this).attr('id');
+      breadcrumb += $(this).attr('value') + ' > ';
     var getString = '/boards/' + id + '/lists';
     Trello.get(
       getString,
@@ -15,10 +17,11 @@ var id="";
     )
   });
   //Retrieve cards
-  $(document).on('click', 'li', function (event) {
+  $(document).on('click', '.loadedList', function (event) {
       event.stopPropagation();
       $('.card').remove();
       id = $(this).attr('id');
+      breadcrumb += $(this).attr('value') + ' > ';
       var getString = '/lists/' + id + '/cards';
       Trello.get(
         getString,
@@ -32,6 +35,7 @@ var id="";
       event.stopPropagation();
       $('.checklist').remove();
       id = $(this).attr('id');
+      breadcrumb += $(this).attr('value') + ' > ';
       var getString = '/cards/' + id + '/checklists';
       Trello.get(
       getString,
@@ -45,6 +49,7 @@ var id="";
        event.stopPropagation();
        $('#checklists').empty();
        id = $(this).attr('id');
+       breadcrumb += $(this).attr('value');
        var getString = '/checklist/' + id + '/checkItems';
        Trello.get(
        getString,
@@ -64,17 +69,18 @@ var id="";
      var $el = $('.list');
      $el.append('<ul>');
      lists.forEach (function (list) {
-       $el.append('<li id="' + list.id + '"><a>' + list.name + '</a></li>')
-    })
-    $el.append('</ul>')
-  };
+       $el.append('<li><a class="loadedList" id="' + list.id + '" value ="' + list.name + '">' + list.name + '</a></li>');
+    $el.append('</ul>');
+  })
+};
 
   //Load individual checklist
   var loadChecklist = function (items) {
       $('#checklists').empty();
       $('#checklists').append('<div class="todo"></div>');
       var $el = $('.todo');
-      $el.append('<button>x</button>');
+      $el.append('<button>x</button><br />');
+      $el.append('<h5>' + breadcrumb + '</h5><br />');
       items.forEach (function (item) {
         $el.append('<h4><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
       })
@@ -86,7 +92,7 @@ var id="";
       var $el = $('.checklist');
       $el.append('<ul>');
       checklists.forEach(function (checklist) {
-        $el.append('<li><a class="loadedChecklist" id="' + checklist.id + '">' + checklist.name + '</a></li>');
+        $el.append('<li><a class="loadedChecklist" id="' + checklist.id + '" value="' + checklist.name + '">' + checklist.name + '</a></li>');
       })
       $el.append('</ul>');
     };
@@ -97,7 +103,7 @@ var id="";
       var $el = $('.card');
       $el.append('<ul>');
       cards.forEach (function (card) {
-          $el.append('<li><a class="loadedCard" id="' + card.id + '">' + card.name + '</a></li>');
+          $el.append('<li><a class="loadedCard" id="' + card.id + '" value ="' + card.name + '">' + card.name + '</a></li>');
       })
       $el.append('</ul>');
     };
@@ -106,7 +112,7 @@ var id="";
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
-    $el.append('<div class="board" id="' + board.id + '"><a>' + board.name + '</a></div>')
+    $el.append('<div class="board" id="' + board.id + '" value="' + board.name + '"><a>' + board.name + '</a></div>')
   })
 
   };
