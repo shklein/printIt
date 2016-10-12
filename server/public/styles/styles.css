@@ -67,3 +67,8 @@ button {
   list-style-type: circle;
   text-indent: 25px;
 }
+
+.checklist li {
+  list-style-type: disc;
+  text-indent: 50px;
+}
