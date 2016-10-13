@@ -2,13 +2,18 @@ $(document).ready(function (){
 
 
 var id="";
+var boardName = "";
+var listName = "";
+var cardName = "";
+var checklistName = "";
 var breadcrumb = "";
+
 
 //Retrieve lists
   $(document).on('click', '.board', function () {
     $('.list').remove();
       id = $(this).attr('id');
-      breadcrumb += $(this).attr('value') + ' > ';
+      boardName = $(this).attr('value') + ' > ';
     var getString = '/boards/' + id + '/lists';
     Trello.get(
       getString,
@@ -21,7 +26,7 @@ var breadcrumb = "";
       event.stopPropagation();
       $('.card').remove();
       id = $(this).attr('id');
-      breadcrumb += $(this).attr('value') + ' > ';
+      listName = $(this).attr('value') + ' > ';
       var getString = '/lists/' + id + '/cards';
       Trello.get(
         getString,
@@ -35,7 +40,7 @@ var breadcrumb = "";
       event.stopPropagation();
       $('.checklist').remove();
       id = $(this).attr('id');
-      breadcrumb += $(this).attr('value') + ' > ';
+      cardName = $(this).attr('value') + ' > ';
       var getString = '/cards/' + id + '/checklists';
       Trello.get(
       getString,
@@ -46,21 +51,23 @@ var breadcrumb = "";
 
    //Load checkedItems
    $(document).on('click', '.loadedChecklist', function (event) {
-       event.stopPropagation();
-       $('#checklists').empty();
-       id = $(this).attr('id');
-       breadcrumb += $(this).attr('value');
-       var getString = '/checklist/' + id + '/checkItems';
-       Trello.get(
-       getString,
-       loadChecklist,
+        event.stopPropagation();
+        $('#checklists').empty();
+        id = $(this).attr('id');
+        checklistName = $(this).attr('value');
+        breadcrumb = boardName + listName + cardName + checklistName;
+        var getString = '/checklist/' + id + '/checkItems';
+        Trello.get(
+        getString,
+        loadChecklist,
        function () { console.log("Failed to retrieve checklists"); }
-     )
+      )
     });
 
   //Close checklist
   $(document).on('click', '.close', function () {
     $('button').parent().remove();
+    breadcrumb = "";
   });
 
   //Print
@@ -119,7 +126,7 @@ var breadcrumb = "";
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
-    $el.append('<div class="board" id="' + board.id + '" value="' + board.name + '"><a>' + board.name + '</a></div>')
+    $el.append('<div class="board" id="' + board.id + '" value="' + board.name + '"><a>' + board.name + '</a></div>');
   })
 
   };
