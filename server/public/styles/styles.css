@@ -69,6 +69,6 @@ img {
 }
 
 .checklist li {
-  list-style-type: disc;
+  list-style-type: square;
   text-indent: 50px;
 }
