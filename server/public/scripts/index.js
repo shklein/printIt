@@ -1,13 +1,11 @@
 $(document).ready(function (){
 
-
 var id="";
 var boardName = "";
 var listName = "";
 var cardName = "";
 var checklistName = "";
 var breadcrumb = "";
-
 
 //Retrieve lists
   $(document).on('click', '.board', function () {
@@ -21,6 +19,7 @@ var breadcrumb = "";
       function () { console.log("Failed to retrieve lists"); }
     )
   });
+
   //Retrieve cards
   $(document).on('click', '.loadedList', function (event) {
       event.stopPropagation();
@@ -31,7 +30,7 @@ var breadcrumb = "";
       Trello.get(
         getString,
         loadCards,
-        function () { console.log("Failed to retrieve lists"); }
+        function () { console.log("Failed to retrieve cards"); }
       )
   });
 
@@ -60,7 +59,7 @@ var breadcrumb = "";
         Trello.get(
         getString,
         loadChecklist,
-       function () { console.log("Failed to retrieve checklists"); }
+       function () { console.log("Failed to retrieve checkedItems"); }
       )
     });
 
@@ -70,7 +69,7 @@ var breadcrumb = "";
     breadcrumb = "";
   });
 
-  //Print
+  //Print checklist
   $(document).on('click', '.print', function () {
     window.print();
   });
@@ -86,7 +85,7 @@ var breadcrumb = "";
   })
 };
 
-  //Load individual checklist
+  //Load individual checklists
   var loadChecklist = function (items) {
       $('#checklists').empty();
       $('#checklists').append('<div class="print_button"><button class="print">Print</button></div>');
@@ -122,7 +121,7 @@ var breadcrumb = "";
       $el.append('</ul>');
     };
 
-//Boards (on page load)
+//Boards (on page load/login)
 var loadedBoards = function (boards) {
   boards.forEach (function (board) {
     var $el = $('#boards');
