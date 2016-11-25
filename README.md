@@ -1,3 +1,3 @@
 #Check Box
 
-Access your Trello checklists in a printer-friendly format! [Deployed here.](http://listmgmt.herokuapp.com/)
+Access your Trello checklists in a printer-friendly format! (A pop-up will prompt you to log in to your Trello account). [Deployed here.](http://listmgmt.herokuapp.com/)
