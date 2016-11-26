@@ -72,3 +72,7 @@ img {
   list-style-type: square;
   text-indent: 50px;
 }
+
+.complete {
+  text-decoration: line-through;
+}

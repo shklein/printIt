@@ -94,8 +94,11 @@ var breadcrumb = "";
       $el.append('<button class="close">x</button><br />');
       $el.append('<h5>' + breadcrumb + '</h5><br />');
       items.forEach (function (item) {
-        console.log(item.state);
+        if (item.state === "complete") {
+          $el.append('<h4 class="complete"><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
+        } else {
         $el.append('<h4><img class="img2" alt="Checkbox" src="./views/img/checkbox.png" />' + item.name + '</h4>');
+      }
       })
     };
 
