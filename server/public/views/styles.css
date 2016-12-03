@@ -1,3 +1,18 @@
+@media print
+{
+  body * { visibility: hidden; }
+  .div2 * { visibility: hidden; }
+  .div3 * { visibility: visible; }
+  .div4 * { visibility: hidden; }
+  .print_button * { visibility: hidden; }
+  .close * { visibility: hidden; }
+}
+
+@page {
+size: auto;
+margin: 25mm;
+}
+
 h1 {
   color: #800000;
   font-size: 50px;
