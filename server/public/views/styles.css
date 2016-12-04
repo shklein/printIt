@@ -1,17 +1,3 @@
-@media print
-{
-  body * { visibility: hidden; }
-  .div2 * { visibility: hidden; }
-  .div3 * { visibility: visible; }
-  .div4 * { visibility: hidden; }
-  .print_button * { visibility: hidden; }
-  .close * { visibility: hidden; }
-}
-
-@page {
-size: auto;
-margin: 25mm;
-}
 
 h1 {
   color: #800000;
@@ -90,4 +76,13 @@ img {
 
 .complete {
   text-decoration: line-through;
+}
+
+@media print
+{
+  .no_show * { display:none; }
+  .div3 * { display: block; }
+  .div4 * { display:none; }
+  .print_button * { display:none; }
+  .close * { display:none; }
 }
