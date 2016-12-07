@@ -80,6 +80,7 @@ img {
 
 @media print
 {
+  h4 { page-break-inside: avoid; }
   .no_show * { display:none; }
   .div3 * { display: block; }
   .div4 * { display:none; }
